@@ -31,7 +31,7 @@ exports.login = (req, res) => {
         if (!isValid) {
             return res.status(400).json({ error: 'Invalid credentials' });
         }
-        const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY || 'your_secret_key', { expiresIn: '1h' });
+        const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY || 'key', { expiresIn: '12h' });
         res.json({ token });
     });
 };

@@ -5,18 +5,23 @@ exports.createTodo = (req, res) => {
     const { title, status } = req.body;
     const id = uuidv4();
     const userId = req.user.id;
-
+  
+    if (!title || title.trim() === '') {
+      return res.status(400).json({ error: 'Todo title cannot be empty' });
+    }
+  
     db.run(
-        `INSERT INTO todos (id, user_id, title, status) VALUES (?, ?, ?, ?)`,
-        [id, userId, title, status],
-        function (err) {
-            if (err) {
-                return res.status(400).json({ error: 'Error creating todo' });
-            }
-            res.status(201).json({ message: 'Todo created successfully' });
+      `INSERT INTO todos (id, user_id, title, status) VALUES (?, ?, ?, ?)`,
+      [id, userId, title, status],
+      function (err) {
+        if (err) {
+          return res.status(400).json({ error: 'Error creating todo' });
         }
+        res.status(201).json({ id, user_id: userId, title, status });
+      }
     );
-};
+  };
+  
 
 exports.getTodos = (req, res) => {
     const userId = req.user.id;
@@ -41,7 +46,7 @@ exports.updateTodo = (req, res) => {
             if (err || this.changes === 0) {
                 return res.status(400).json({ error: 'Error updating todo' });
             }
-            res.json({ message: 'Todo updated successfully' });
+            res.json({ id: todoId, title, status });
         }
     );
 };
