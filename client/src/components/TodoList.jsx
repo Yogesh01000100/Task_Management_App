@@ -14,7 +14,7 @@ const TodoList = () => {
   useEffect(() => {
     const fetchTodos = () => {
       axios
-        .get("http://localhost:3000/api/todos", {
+        .get("https://task-management-app-7goy.onrender.com/api/todos", {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((response) => {
@@ -34,7 +34,7 @@ const TodoList = () => {
 
     axios
       .post(
-        "http://localhost:3000/api/todos",
+        "https://task-management-app-7goy.onrender.com/api/todos",
         { title, status },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -51,7 +51,7 @@ const TodoList = () => {
   const updateTodo = () => {
     axios
       .put(
-        `http://localhost:3000/api/todos/${editTodoId}`,
+        `https://task-management-app-7goy.onrender.com/api/todos/${editTodoId}`,
         { title: editTitle, status: editStatus },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -72,7 +72,7 @@ const TodoList = () => {
 
   const deleteTodo = (id) => {
     axios
-      .delete(`http://localhost:3000/api/todos/${id}`, {
+      .delete(`https://task-management-app-7goy.onrender.com/api/todos/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(() => {

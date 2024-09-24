@@ -10,7 +10,7 @@ const Signup = () => {
 
   const handleSignup = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3000/api/auth/signup', { name, email, password })
+    axios.post('https://task-management-app-7goy.onrender.com/api/auth/signup', { name, email, password })
       .then(() => {
         alert('Signup successful! You can now log in.');
         navigate('/login');

@@ -6,7 +6,7 @@ const Profile = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    axios.get('http://localhost:3000/api/profile', {
+    axios.get('https://task-management-app-7goy.onrender.com/api/profile', {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then(response => {

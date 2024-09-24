@@ -9,7 +9,7 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3000/api/auth/login', { email, password })
+    axios.post('https://task-management-app-7goy.onrender.com/api/auth/login', { email, password })
       .then(response => {
         localStorage.setItem('token', response.data.token);
         navigate('/todos');
