@@ -115,7 +115,7 @@ const TodoList = () => {
         </div>
 
         {editTodoId && (
-          <div className="mb-8 bg-gray-600 p-4 rounded-lg">
+          <div className="mb-8 bg-gray-700 p-4 rounded-lg">
             <h3 className="text-xl font-semibold mb-2">Edit Todo</h3>
             <div className="flex flex-col sm:flex-row items-center gap-4 mb-4">
               <input
