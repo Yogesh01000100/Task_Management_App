@@ -115,7 +115,7 @@ const TodoList = () => {
         </div>
 
         {editTodoId && (
-          <div className="mb-8 bg-gray-800 p-4 rounded-lg">
+          <div className="mb-8 bg-gray-600 p-4 rounded-lg">
             <h3 className="text-xl font-semibold mb-2">Edit Todo</h3>
             <div className="flex flex-col sm:flex-row items-center gap-4 mb-4">
               <input
@@ -137,7 +137,7 @@ const TodoList = () => {
               </select>
               <button
                 onClick={updateTodo}
-                className="bg-green-500 hover:bg-green-600 text-white p-3 rounded w-full sm:w-auto transition"
+                className="bg-green-500 hover:bg-green-600 text-white p-3 rounded lg:w-1/4 sm:w-auto transition"
               >
                 Update Todo
               </button>
