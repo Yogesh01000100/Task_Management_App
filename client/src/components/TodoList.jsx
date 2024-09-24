@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Navbar from "./NavBar";
 
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
@@ -63,12 +64,11 @@ const TodoList = () => {
         );
         setTodos(updatedTodos);
         setEditTodoId(null);
-        setEditTitle('');
-        setEditStatus('pending');
+        setEditTitle("");
+        setEditStatus("pending");
       })
       .catch((error) => console.error("Error updating todo:", error));
   };
-  
 
   const deleteTodo = (id) => {
     axios
@@ -82,88 +82,92 @@ const TodoList = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h2 className="text-2xl mb-4">Todo List</h2>
-      <div className="mb-4">
-        <input
-          type="text"
-          placeholder="Task title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          className="border p-2 mr-2"
-        />
-        <select
-          value={status}
-          onChange={(e) => setStatus(e.target.value)}
-          className="border p-2 mr-2"
-        >
-          <option value="pending">Pending</option>
-          <option value="in progress">In Progress</option>
-        </select>
-        <button
-          onClick={addTodo}
-          className="bg-blue-500 text-white p-2"
-          disabled={title.trim() === ""}
-        >
-          Add Todo
-        </button>
-      </div>
-
-      {editTodoId && (
+    <div>
+      <Navbar />
+      
+      <div className="container mx-auto p-4">
+        <h2 className="text-2xl mb-4">Todo List</h2>
         <div className="mb-4">
           <input
             type="text"
-            placeholder="Edit Task title"
-            value={editTitle}
-            onChange={(e) => setEditTitle(e.target.value)}
+            placeholder="Task title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
             className="border p-2 mr-2"
           />
           <select
-            value={editStatus}
-            onChange={(e) => setEditStatus(e.target.value)}
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
             className="border p-2 mr-2"
           >
             <option value="pending">Pending</option>
             <option value="in progress">In Progress</option>
-            <option value="completed">Completed</option>
-            <option value="done">Done</option>
           </select>
-          <button onClick={updateTodo} className="bg-green-500 text-white p-2">
-            Update Todo
+          <button
+            onClick={addTodo}
+            className="bg-blue-500 text-white p-2"
+            disabled={title.trim() === ""}
+          >
+            Add Todo
           </button>
         </div>
-      )}
 
-      <ul>
-        {todos.map((todo) => (
-          <li
-            key={todo.id}
-            className="border-b py-2 flex justify-between items-center"
-          >
-            <span>
-              {todo.title || "-"} - {todo.status}
-            </span>
-            <div>
-              <button
-                onClick={() => {
-                  setEditTodoId(todo.id);
-                  setEditTitle(todo.title);
-                  setEditStatus(todo.status);
-                }}
-                className="bg-yellow-500 text-white p-1 mr-2"
-              >
-                Edit
-              </button>
-              <button
-                onClick={() => deleteTodo(todo.id)}
-                className="bg-red-500 text-white p-1"
-              >
-                Delete
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
+        {editTodoId && (
+          <div className="mb-4">
+            <input
+              type="text"
+              placeholder="Edit Task title"
+              value={editTitle}
+              onChange={(e) => setEditTitle(e.target.value)}
+              className="border p-2 mr-2"
+            />
+            <select
+              value={editStatus}
+              onChange={(e) => setEditStatus(e.target.value)}
+              className="border p-2 mr-2"
+            >
+              <option value="pending">Pending</option>
+              <option value="in progress">In Progress</option>
+              <option value="completed">Completed</option>
+              <option value="done">Done</option>
+            </select>
+            <button onClick={updateTodo} className="bg-green-500 text-white p-2">
+              Update Todo
+            </button>
+          </div>
+        )}
+
+        <ul>
+          {todos.map((todo) => (
+            <li
+              key={todo.id}
+              className="border-b py-2 flex justify-between items-center"
+            >
+              <span>
+                {todo.title || "-"} - {todo.status}
+              </span>
+              <div>
+                <button
+                  onClick={() => {
+                    setEditTodoId(todo.id);
+                    setEditTitle(todo.title);
+                    setEditStatus(todo.status);
+                  }}
+                  className="bg-yellow-500 text-white p-1 mr-2"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => deleteTodo(todo.id)}
+                  className="bg-red-500 text-white p-1"
+                >
+                  Delete
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

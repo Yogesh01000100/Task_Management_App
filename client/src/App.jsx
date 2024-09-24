@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
-import Navbar from "./components/NavBar";
 import Profile from "./components/Profile";
 import TodoList from "./components/TodoList";
 import AuthPage from "./components/Auth";
@@ -8,8 +7,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 function App() {
   return (
     <Router>
-      <Navbar />
       <Routes>
+        
         <Route path="/" element={<Navigate to="/todos" />} />
         <Route path="/auth" element={<AuthPage />} />
         <Route
