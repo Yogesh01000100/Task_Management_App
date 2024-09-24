@@ -13,7 +13,7 @@ const Signup = () => {
     axios.post('https://task-management-app-7goy.onrender.com/api/auth/signup', { name, email, password })
       .then(() => {
         alert('Signup successful! You can now log in.');
-        navigate('/login');
+        navigate('/auth');
       })
       .catch(error => {
         console.error('Error signing up:', error);

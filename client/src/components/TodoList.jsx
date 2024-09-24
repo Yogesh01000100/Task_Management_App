@@ -82,30 +82,32 @@ const TodoList = () => {
   };
 
   return (
-    <div>
+    <div className="min-h-screen bg-gray-900 text-white">
       <Navbar />
-      
-      <div className="container mx-auto p-4">
-        <h2 className="text-2xl mb-4">Todo List</h2>
-        <div className="mb-4">
+
+      <div className="container mx-auto p-4 max-w-4xl">
+        <h2 className="text-4xl font-bold text-center text-gray-100 mb-6">
+          Manage Your Daily Tasks
+        </h2>
+        <div className="flex flex-col sm:flex-row items-center gap-4 mb-8">
           <input
             type="text"
             placeholder="Task title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="border p-2 mr-2"
+            className="border border-gray-700 bg-gray-800 p-3 rounded w-full sm:w-2/3 text-white"
           />
           <select
             value={status}
             onChange={(e) => setStatus(e.target.value)}
-            className="border p-2 mr-2"
+            className="border border-gray-700 bg-gray-800 p-3 rounded w-full sm:w-1/3 text-white"
           >
             <option value="pending">Pending</option>
             <option value="in progress">In Progress</option>
           </select>
           <button
             onClick={addTodo}
-            className="bg-blue-500 text-white p-2"
+            className="bg-blue-600 hover:bg-blue-700 text-white p-3 rounded lg:w-1/4 sm:w-auto transition"
             disabled={title.trim() === ""}
           >
             Add Todo
@@ -113,53 +115,60 @@ const TodoList = () => {
         </div>
 
         {editTodoId && (
-          <div className="mb-4">
-            <input
-              type="text"
-              placeholder="Edit Task title"
-              value={editTitle}
-              onChange={(e) => setEditTitle(e.target.value)}
-              className="border p-2 mr-2"
-            />
-            <select
-              value={editStatus}
-              onChange={(e) => setEditStatus(e.target.value)}
-              className="border p-2 mr-2"
-            >
-              <option value="pending">Pending</option>
-              <option value="in progress">In Progress</option>
-              <option value="completed">Completed</option>
-              <option value="done">Done</option>
-            </select>
-            <button onClick={updateTodo} className="bg-green-500 text-white p-2">
-              Update Todo
-            </button>
+          <div className="mb-8 bg-gray-800 p-4 rounded-lg">
+            <h3 className="text-xl font-semibold mb-2">Edit Todo</h3>
+            <div className="flex flex-col sm:flex-row items-center gap-4 mb-4">
+              <input
+                type="text"
+                placeholder="Edit Task title"
+                value={editTitle}
+                onChange={(e) => setEditTitle(e.target.value)}
+                className="border border-gray-700 bg-gray-800 p-3 rounded w-full sm:w-2/3 text-white"
+              />
+              <select
+                value={editStatus}
+                onChange={(e) => setEditStatus(e.target.value)}
+                className="border border-gray-700 bg-gray-800 p-3 rounded w-full sm:w-1/3 text-white"
+              >
+                <option value="pending">Pending</option>
+                <option value="in progress">In Progress</option>
+                <option value="completed">Completed</option>
+                <option value="done">Done</option>
+              </select>
+              <button
+                onClick={updateTodo}
+                className="bg-green-500 hover:bg-green-600 text-white p-3 rounded w-full sm:w-auto transition"
+              >
+                Update Todo
+              </button>
+            </div>
           </div>
         )}
 
-        <ul>
+        <ul className="divide-y divide-gray-700">
           {todos.map((todo) => (
             <li
               key={todo.id}
-              className="border-b py-2 flex justify-between items-center"
+              className="flex justify-between items-center p-4 bg-gray-800 hover:bg-gray-700 rounded-lg transition my-2"
             >
-              <span>
-                {todo.title || "-"} - {todo.status}
+              <span className="font-medium text-lg text-gray-300">
+                {todo.title || "-"} -{" "}
+                <span className="italic text-gray-500">{todo.status}</span>
               </span>
-              <div>
+              <div className="flex space-x-2">
                 <button
                   onClick={() => {
                     setEditTodoId(todo.id);
                     setEditTitle(todo.title);
                     setEditStatus(todo.status);
                   }}
-                  className="bg-yellow-500 text-white p-1 mr-2"
+                  className="bg-yellow-500 hover:bg-yellow-600 text-white p-2 rounded"
                 >
                   Edit
                 </button>
                 <button
                   onClick={() => deleteTodo(todo.id)}
-                  className="bg-red-500 text-white p-1"
+                  className="bg-red-600 hover:bg-red-700 text-white p-2 rounded"
                 >
                   Delete
                 </button>
